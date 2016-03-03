@@ -69,6 +69,10 @@
 		<jdk.version>1.6</jdk.version>
 		<deploy_env>local</deploy_env>
 
+		<tomcat.version>2.2</tomcat.version>
+		<jetty.version>7.6.14.v20131031</jetty.version>
+		<webserver.port>8181</webserver.port>
+
 		<maven.build.timestamp.format>MM-dd_HH:mm:ss</maven.build.timestamp.format>
 		<BUILD_ID>${maven.build.timestamp}</BUILD_ID>
 	</properties>
@@ -987,7 +991,31 @@
 						<warName>${project.artifactId}</warName>
 					</configuration>
 				</plugin>
-
+			
+			<!-- tomcat6插件 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat6-maven-plugin</artifactId>
+				<version>${tomcat.version}</version> 
+				<configuration>
+					<port>${webserver.port}</port>
+					<path>/${project.artifactId}</path>
+					<uriEncoding>${project.build.sourceEncoding}</uriEncoding>
+				</configuration>
+			</plugin>
+			
+			<!-- tomcat7插件 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>${tomcat.version}</version> 
+				<configuration>
+					<port>${webserver.port}</port>
+					<path>/${project.artifactId}</path>
+					<uriEncoding>${project.build.sourceEncoding}</uriEncoding>
+				</configuration>
+			</plugin>
+			
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
